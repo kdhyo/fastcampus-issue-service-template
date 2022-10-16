@@ -21,5 +21,12 @@ class CommentController(
 		return commentService.create(issueId, authUser.userId, authUser.username, request)
 	}
 
+	@PutMapping("/{id}")
+	fun edit(
+		authUser: AuthUser,
+		@PathVariable id: Long,
+		@RequestBody request: CommentRequest,
+	) = commentService.edit(id, authUser.userId, request)
+
 
 }
