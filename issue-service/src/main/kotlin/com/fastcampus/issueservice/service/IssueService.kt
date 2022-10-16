@@ -2,6 +2,7 @@ package com.fastcampus.issueservice.service
 
 import com.fastcampus.issueservice.domain.Issue
 import com.fastcampus.issueservice.domain.IssueRepository
+import com.fastcampus.issueservice.domain.enums.IssueStatus
 import com.fastcampus.issueservice.model.IssueRequest
 import com.fastcampus.issueservice.model.IssueResponse
 import org.springframework.stereotype.Service
@@ -25,5 +26,10 @@ class IssueService(
 
 		return IssueResponse(issueRepository.save(issue))
 	}
+
+	@Transactional(readOnly = true)
+	fun getAll(status: IssueStatus) =
+		issueRepository.findAllByStatusOrderByCreatedAtDesc(status)
+			?.map { IssueResponse(it) }
 
 }
