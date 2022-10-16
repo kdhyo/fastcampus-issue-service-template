@@ -9,7 +9,7 @@ plugins {
     kotlin("kapt") version "1.6.21"
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 allprojects {
     group = "com.fastcampus"
@@ -55,7 +55,7 @@ subprojects {
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "17"
+            jvmTarget = "11"
         }
     }
 
